@@ -179,4 +179,5 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-
+Screenshot
+![image alt](https://github.com/akashcbe/Potato-disease-classification/blob/f38ec267c73629daa26e308564ae340e60ae8407/Screenshot%202026-04-18%20141716.png)

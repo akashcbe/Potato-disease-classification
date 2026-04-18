@@ -183,3 +183,5 @@ Screenshot
 ![image alt](https://github.com/akashcbe/Potato-disease-classification/blob/f38ec267c73629daa26e308564ae340e60ae8407/Screenshot%202026-04-18%20141716.png)
 
 ![image alt](https://github.com/akashcbe/Potato-disease-classification/blob/e938c97dc829b0e871bbf5e7dd22d86b9c282f35/Screenshot%202026-04-18%20141736.png)
+
+![image alt](https://github.com/akashcbe/Potato-disease-classification/blob/3f0c97b765dd1219b75a6905f99784e4ed099ce2/Screenshot%202026-04-18%20141756.png)

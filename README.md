@@ -15,7 +15,7 @@ This was built as a student learning project to explore deep learning and API de
 ##  Features
 
 - Classifies potato leaf images into 3 categories:
-  -  Healthy
+  - ✅ Healthy
   - 🟠 Early Blight *(caused by Alternaria solani)*
   - 🔴 Late Blight *(caused by Phytophthora infestans)*
 - REST API for sending images and getting predictions

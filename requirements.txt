@@ -1,6 +1,6 @@
-fastapi
-uvicorn[standard]
-tensorflow
-pillow
-numpy
-python-multipart
+streamlit==1.32.0
+tensorflow-cpu==2.15.1
+numpy==1.26.4
+Pillow==10.2.0
+matplotlib==3.8.3
+ 

@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
+import os
 
 st.set_page_config(page_title="Potato Disease Classifier", page_icon="🥔", layout="wide")
 
@@ -32,15 +33,39 @@ DISEASE_INFO = {
     }
 }
 
+def get_model_path():
+    """Find potatoes.onnx regardless of working directory."""
+    # Check multiple possible locations
+    candidates = [
+        "potatoes.onnx",                                          # current dir
+        os.path.join(os.path.dirname(__file__), "potatoes.onnx"), # same dir as app.py
+        "/mount/src/potato-disease-classification/potatoes.onnx", # Streamlit Cloud
+    ]
+    # Also search any /mount/src subfolder dynamically
+    if os.path.exists("/mount/src"):
+        for folder in os.listdir("/mount/src"):
+            candidates.append(f"/mount/src/{folder}/potatoes.onnx")
+
+    for path in candidates:
+        if os.path.isfile(path):
+            return path
+    return None
+
 @st.cache_resource
 def load_model():
-    try:
-        import onnxruntime as ort
-        sess = ort.InferenceSession("potatoes.onnx")
-        return sess
-    except Exception as e:
-        st.error(f"Could not load model: {e}\n\nMake sure potatoes.onnx is in the repo root.")
+    import onnxruntime as ort
+    model_path = get_model_path()
+
+    if model_path is None:
+        # Show debug info to help diagnose
+        st.error("❌ `potatoes.onnx` not found. Debug info below:")
+        st.code(f"Working directory: {os.getcwd()}\n"
+                f"Files here: {os.listdir('.')}\n"
+                f"/mount/src contents: {os.listdir('/mount/src') if os.path.exists('/mount/src') else 'N/A'}")
         return None
+
+    st.success(f"✅ Model loaded from: `{model_path}`")
+    return ort.InferenceSession(model_path)
 
 def preprocess_image(image):
     img = image.convert("RGB").resize((IMAGE_SIZE, IMAGE_SIZE))
